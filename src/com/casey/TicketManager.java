@@ -44,14 +44,15 @@ public class TicketManager {
         }
         scan.close();
     }
-
+    // delete ticket method
     protected static void deleteTicket(LinkedList<Ticket> ticketQueue, LinkedList<String> resolvedTickets) {
         printAllTickets(ticketQueue);
-
+        //if queue is empty..
         if (ticketQueue.size() == 0) {      //no tickets!
             System.out.println("No tickets to delete!\n");
             return;
         }
+        // while loop for ticket ID
         while (true) {
             Scanner deleteScanner = new Scanner(System.in);
             int deleteID = deleteScanner.nextInt();
@@ -71,19 +72,19 @@ public class TicketManager {
             for (Ticket ticket : ticketQueue) {
                 if (ticket.getTicketID() == deleteID) {
                     found = true;
-
+                    // new resolution and dateResolution variables
                     Date resolutionDate = new Date();
                     System.out.println("Enter the resolution: ");
                     String resolution = deleteScanner.nextLine();
                     String resolvedTicket = (ticket + " Resolution Date: " + resolutionDate + " Resolution: " + resolution);
                     resolvedTickets.add(resolvedTicket);
-
+                    // remove ticket from queue
                     ticketQueue.remove(ticket);
                     System.out.println(String.format("Ticket %d deleted", deleteID));
-
                     return;
                 }
             }
+            //message for ticket ID not found
             if (!found) {
                 System.out.println("Ticket ID not found, no ticket deleted");
                 return;
@@ -157,13 +158,17 @@ public class TicketManager {
     }
     //search ticket method
     public static void searchTicket(LinkedList<Ticket> ticketQueue) {
+        //new linked list for earch results
         LinkedList<String> searchResults = new LinkedList<String>();
         System.out.println("Enter a word to search for: ");
         Scanner searchScanner = new Scanner(System.in);
         String searchInput = searchScanner.nextLine();
+
+        //for ticket in ticketQueue, convert to string, split into words in a list
         for(Ticket s : ticketQueue) {
             String ticketToString = s.toString();
             String[] splitString = ticketToString.split("\\s");
+            // for each word in the list, if its the search word, add ticket to new string
             for(Object word : splitString) {
                 if (word.equals(searchInput)) {
                     searchResults.add(ticketToString);
@@ -172,13 +177,14 @@ public class TicketManager {
                 }
             }
         }
+        //for ticket in searchResults, print ticket
         for(String s : searchResults) {
-            System.out.println(s + "/n");
+            System.out.println(s + "\n");
         }
         searchScanner.close();
         System.out.println("To delete ticket, choose option 2 and enter the ID");
     }
-
+    // print all tickets method
     protected static void printAllTickets(LinkedList<Ticket> tickets) {
         System.out.println(" ----- All tickets ----- ");
 
@@ -186,9 +192,12 @@ public class TicketManager {
             System.out.println(t);
         }
     }
+    // open ticket writer
     protected static void openTicketWriter (LinkedList<Ticket> ticketQueue) {
         try{
+            //bufferedWriter for new file
             BufferedWriter openTickets = new BufferedWriter(new FileWriter("open_tickets.txt"));
+            //for ticket in queue, write line to file
             for (Ticket t : ticketQueue) {
                 openTickets.write(t.toString() + "\n");
             }
@@ -198,13 +207,16 @@ public class TicketManager {
             System.out.println("An IO Exception has occurred");
         }
     }
+    // resolved ticker writer
     protected static void resolvedTicketWriter (LinkedList<String> resolvedTickets) {
         try{
+            // new date and format
             Date date = new Date();
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+            // new file for name format
             File file = new File("resolved_tickets_as_of_" + dateFormat.format(date) + ".txt" );
             BufferedWriter resolvedTicks = new BufferedWriter (new FileWriter(file));
-
+            //for ticket in resolved tickets, write to file with new line
             for (String t : resolvedTickets) {
                 resolvedTicks.write(t + "\n");
             }
@@ -214,15 +226,19 @@ public class TicketManager {
             System.out.println("An IO Exception has occurred");
         }
     }
+    // open ticket file reader
     protected static void openTicketReader (LinkedList<Ticket> ticketQueue) {
         try{
+            // new fileReader
             BufferedReader openTicketImport = new BufferedReader(new FileReader("open_tickets.txt"));
             String line = openTicketImport.readLine();
+            //while there are lines, split
             while (line != null) {
                 String ticketToString = openTicketImport.toString();
                 String[] splitString = ticketToString.split("\\s");
                 for(Object word : splitString) {
-                    System.out.println(word);
+//                    System.out.println(word);
+                    //TODO figure out how to reimplement the data back into ticket form.
                 }
             }
             openTicketImport.close();
