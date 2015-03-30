@@ -6,13 +6,13 @@ import java.util.LinkedList;
 /**
  * Created by Muffin on 3/2/2015.
  */
-public class Ticket {
+public class Ticket implements Comparable<Ticket>{
 
     private int priority;
     private String reporter; // Stores person or dept that reported issue
     private String description;
-    private Date dateReported;
-    private Date resolutionDate;
+    private String dateReported;
+    private String resolutionDate;
     private String resolution;
 
     public int getTicketID() { return ticketID; }
@@ -25,7 +25,7 @@ public class Ticket {
     // The ID for each ticket = instance variable. Each ticket will have it's own ticketID variable
     protected int ticketID;
 
-    public Ticket(int priority, String reporter, String description, Date dateReported, Date resolutionDate, String resolution) {
+    public Ticket(int priority, String reporter, String description, String dateReported, String resolutionDate, String resolution) {
         this.priority = priority;
         this.reporter = reporter;
         this.description = description;
@@ -36,9 +36,18 @@ public class Ticket {
         this.resolution = resolution;
     }
 
+    public int compareTo(Ticket anotherTicket) {
+        if (this.priority < anotherTicket.getPriority()) {
+            return 1;
+        } else if (this.priority < anotherTicket.getPriority()) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
     //Called automatically if a Ticket object is an argument to System.out.println
     public String toString() {
-        return(" ID = " + this.ticketID + " Issue: " + this.description + " Priority: " + this.priority + " Reported by: " + this.reporter + " Reported on: " + this.dateReported + " Resolution Date: " + this.resolutionDate + " Resolution: " + this.resolution);
+        return(" ID = " + this.ticketID + "\n Issue: " + this.description + "\n Priority: " + this.priority + "\n Reported by: " + this.reporter + "\n Reported on: " + this.dateReported + "\n Resolution Date: " + this.resolutionDate + "\n Resolution: " + this.resolution);
     }
 
 }

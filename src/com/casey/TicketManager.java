@@ -7,6 +7,7 @@ import java.util.*;
 public class TicketManager {
 
     public static void main(String[] args) {
+        SupportTicketGUI supportTicketGUI = new SupportTicketGUI();
         // LinkedLists for ticketQueue and resolvedTickets
         LinkedList<Ticket> ticketQueue = new LinkedList<Ticket>();
         LinkedList<String> resolvedTickets = new LinkedList<String>();
@@ -107,29 +108,31 @@ public class TicketManager {
         String resolution = null;
 
         boolean moreProblems = true;
-        while (moreProblems) {
-            //input statements
-            System.out.println("Enter problem: ");
-            description = sc.nextLine();
-            System.out.println("Who reported the issue?: ");
-            reporter = sc.nextLine();
-            System.out.println("Enter the priority of : " + description);
-            priority = Integer.parseInt(sc.nextLine());
-
-            // create new ticket and add to ticket list
-            Ticket t = new Ticket(priority, reporter, description, dateReported, resolutionDate, resolution);
-            addTicketInPriorityOrder(ticketQueue, t);
-
-            // print out all of the currently stored tickets after a new ticket is entered
-            printAllTickets(ticketQueue);
-
-            //option to add more tickets
-            System.out.println("More tickets?: ");
-            String more = sc.nextLine();
-            if (more.equalsIgnoreCase("N")) {
-                moreProblems = false;
-            }
-        }
+//        while (moreProblems) {
+//            //input statements
+//            System.out.println("Enter problem: ");
+//            description = sc.nextLine();
+//            System.out.println("Who reported the issue?: ");
+//            reporter = sc.nextLine();
+//            System.out.println("Enter the priority of : " + description);
+//            priority = Integer.parseInt(sc.nextLine());
+//
+//            // create new ticket and add to ticket list
+//            Ticket t = new Ticket(priority, reporter, description, dateReported, resolutionDate, resolution);
+////            addTicketInPriorityOrder(ticketQueue, t);
+//
+//            ticketQueue.add(t);
+//            Collections.sort(ticketQueue);      // add a ticket, then sort the list
+//            // print out all of the currently stored tickets after a new ticket is entered
+//            printAllTickets(ticketQueue);
+//
+//            //option to add more tickets
+//            System.out.println("More tickets?: ");
+//            String more = sc.nextLine();
+//            if (more.equalsIgnoreCase("N")) {
+//                moreProblems = false;
+//            }
+//        }
     }
     // add ticket method
     protected static void addTicketInPriorityOrder(LinkedList<Ticket> tickets, Ticket newTicket) {
