@@ -15,6 +15,11 @@ public class Ticket implements Comparable<Ticket>{
     private String resolutionDate;
     private String resolution;
 
+    //getters
+    public String getReporter() { return reporter; }
+    public String getDescription() { return description; }
+    public String getDateReported() { return dateReported; }
+    public static int getStaticTicketIDCounter() { return staticTicketIDCounter; }
     public int getTicketID() { return ticketID; }
     protected int getPriority() { return priority; }
 
@@ -38,9 +43,9 @@ public class Ticket implements Comparable<Ticket>{
 
     public int compareTo(Ticket anotherTicket) {
         if (this.priority < anotherTicket.getPriority()) {
-            return 1;
-        } else if (this.priority < anotherTicket.getPriority()) {
             return -1;
+        } else if (this.priority > anotherTicket.getPriority()) {
+            return 1;
         } else {
             return 0;
         }
@@ -48,6 +53,10 @@ public class Ticket implements Comparable<Ticket>{
     //Called automatically if a Ticket object is an argument to System.out.println
     public String toString() {
         return(" ID = " + this.ticketID + "\n Issue: " + this.description + "\n Priority: " + this.priority + "\n Reported by: " + this.reporter + "\n Reported on: " + this.dateReported + "\n Resolution Date: " + this.resolutionDate + "\n Resolution: " + this.resolution);
+    }
+
+    public String toList() {
+        return(" Priority: " + this.priority + " ID = " + this.ticketID);
     }
 
 }

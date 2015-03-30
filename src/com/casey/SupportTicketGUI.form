@@ -121,15 +121,6 @@
           <text value="Date"/>
         </properties>
       </component>
-      <component id="6bf98" class="javax.swing.JSpinner" binding="dateSpinner">
-        <constraints>
-          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <font name="Cambria Math"/>
-        </properties>
-      </component>
       <vspacer id="1f55f">
         <constraints>
           <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
@@ -193,15 +184,6 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
       </vspacer>
-      <component id="e505" class="javax.swing.JSpinner" binding="resDateSpinner">
-        <constraints>
-          <grid row="11" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <font name="Cambria Math"/>
-        </properties>
-      </component>
       <component id="1be0a" class="javax.swing.JLabel" binding="resDateLabel">
         <constraints>
           <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -231,6 +213,7 @@
         </constraints>
         <properties>
           <font name="Cambria Math"/>
+          <model/>
         </properties>
       </component>
       <component id="641cf" class="javax.swing.JButton" binding="saveButton" default-binding="true">
@@ -239,7 +222,39 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Save"/>
+          <font name="Cambria Math"/>
+          <text value="Save all tickets"/>
+        </properties>
+      </component>
+      <component id="c6eb7" class="javax.swing.JLabel" binding="selectedTicket">
+        <constraints>
+          <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font name="Cambria Math"/>
+          <foreground color="-10395295"/>
+          <text value="Double-click a ticket to select"/>
+        </properties>
+      </component>
+      <component id="5e6b4" class="javax.swing.JLabel" binding="dateLabel">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font name="Cambria Math"/>
+          <text value="current date"/>
+        </properties>
+      </component>
+      <component id="74f87" class="javax.swing.JLabel" binding="resDate">
+        <constraints>
+          <grid row="11" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font name="Cambria Math"/>
+          <text value="resolution date"/>
         </properties>
       </component>
     </children>
