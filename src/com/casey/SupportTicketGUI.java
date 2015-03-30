@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.*;
 
 /**
  * Created by casey on 3/24/15.
@@ -27,7 +28,9 @@ public class SupportTicketGUI extends JFrame{
     private JSpinner dateSpinner;
     private JSpinner resDateSpinner;
     private JLabel resDateLabel;
+    private JButton saveButton;
     DefaultListModel<Ticket> supportTicketModel;
+    TicketManager mgr = new TicketManager();
 
     public SupportTicketGUI() {
         //setup
@@ -36,7 +39,7 @@ public class SupportTicketGUI extends JFrame{
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        setSize(new Dimension(500, 500));
+        setSize(new Dimension(1000, 500));
 
         //support ticket model
         supportTicketModel = new DefaultListModel<Ticket>();
@@ -65,7 +68,7 @@ public class SupportTicketGUI extends JFrame{
 
             }
         });
-        reporterField.addKeyListener(new KeyAdapter() {
+        reporterField.addKeyListener(new KeyAdapter(){
         });
         resolveTicketField.addKeyListener(new KeyAdapter() {
         });
@@ -89,7 +92,11 @@ public class SupportTicketGUI extends JFrame{
 
                 //new ticket and add ticket to ticket list
                 Ticket newTicket = new Ticket(priority, reporter, description, date, resDate, resolution);
+
+
+                mgr.addTicketInPriorityOrder(newTicket);
                 SupportTicketGUI.this.supportTicketModel.addElement(newTicket);
+
 
             }
         });
@@ -102,5 +109,12 @@ public class SupportTicketGUI extends JFrame{
             }
         });
 
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mgr.openTicketWriter();
+                mgr.resolvedTicketWriter();
+            }
+        });
     }
 }
